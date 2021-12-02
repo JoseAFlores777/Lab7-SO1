@@ -14,6 +14,7 @@ SOURCES += \
     cframe.cpp
 
 HEADERS += \
+    ColaPAlta.h \
     Lista.h \
     Nodo.h \
     Vehiculo.h \

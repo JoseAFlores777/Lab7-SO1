@@ -8,6 +8,7 @@ using std::cout;
 
 template< typename tipo >
 class Lista{
+    friend class CFrame;
 public:
     Lista(); // constructor
     ~Lista(); // destructor

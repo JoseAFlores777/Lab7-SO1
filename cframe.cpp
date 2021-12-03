@@ -1,10 +1,13 @@
 #include "cframe.h"
 #include "ui_cframe.h"
+#include <QPixmap>
 
 CFrame::CFrame(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::CFrame)
 {
+
+
 
     disponiblesSize=5;
     PAltaSize=1;
@@ -14,7 +17,12 @@ CFrame::CFrame(QWidget *parent)
     Predefinido();
     MostrarDisponibles();
     on_tabWidget_Listas_tabBarClicked(0);
-
+    QPixmap pix(":/Foto_Perfil.png");
+    ui->JAIF->setPixmap(pix.scaled(ui->JAIF->width(),ui->JAIF->height(),Qt::KeepAspectRatio));
+    QPixmap pix2(":/Kenneth.jpeg");
+    ui->Kennet->setPixmap(pix2.scaled(ui->Kennet->width(),ui->Kennet->height(),Qt::KeepAspectRatio));
+    QPixmap pix3(":/Heber.jpeg");
+    ui->Heber->setPixmap(pix3.scaled(ui->Heber->width(),ui->Heber->height(),Qt::KeepAspectRatio));
 
 }
 
@@ -392,5 +400,6 @@ void CFrame::on_pBtn_Agregar_2_clicked()
     Vehiculo* tmp = new Vehiculo();
     tmp->Leer();
     L.insertarAlFinal(tmp);
+    MostrarDisponibles();
 }
 

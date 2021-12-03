@@ -2,9 +2,11 @@
 #define NODO_H
 
 template <typename tipo> class Lista;
+template <typename tipo> class Cola;
 template <typename tipo>
 class Nodo {
     friend class Lista <tipo>;
+    friend class Cola<tipo>;
     friend class CFrame;
 
 public:

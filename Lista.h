@@ -16,6 +16,7 @@ public:
     void insertarAlFinal( const tipo & );
     bool eliminarDelFrente( tipo & );
     bool eliminarDelFinal( tipo & );
+    tipo eliminarDeCualquier( int &Pos );
     bool estaVacia() const;
     void imprimir() const;
 private:
@@ -144,4 +145,42 @@ void Lista< tipo >::imprimir() const{
     } // fin de while
     cout << "\n\n";
 } // fin de la función imprimir
+
+template <typename tipo>
+tipo Lista <tipo>::eliminarDeCualquier( int &Pos ){
+
+
+
+        int Cant = 0;
+        Nodo <tipo> *actPtr = primeroPtr, *tempPtr, *tmpEnviar;
+
+        do{
+            Cant++;
+            actPtr = actPtr->sigPtr;
+        }while(actPtr != 0);
+
+        if( Pos<=Cant ){
+            cout<<"entró aqui";
+            actPtr = primeroPtr;
+            if ( Pos!=0 ){
+                for(int i=1; i<Pos-1; i++){
+                    actPtr = actPtr->sigPtr;
+                }
+                tempPtr = actPtr->sigPtr;
+                actPtr->sigPtr = tempPtr->sigPtr;
+            }else{
+                tempPtr = actPtr;
+                primeroPtr = actPtr->sigPtr;
+            }
+//            valor = tempPtr->datos;
+            //delete tempPtr;
+            Vehiculo * tmp = tempPtr->datos;
+            delete tempPtr;
+            //return true;
+
+
+        return tmp;
+    }
+}
+
 #endif

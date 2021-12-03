@@ -209,26 +209,6 @@
       <string>Posición a Vender:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_Pos_aMover_des">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>110</y>
-       <width>141</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>13</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Mover a prioridades</string>
-     </property>
-    </widget>
    </widget>
    <widget class="QLabel" name="label_Title_tabla">
     <property name="geometry">

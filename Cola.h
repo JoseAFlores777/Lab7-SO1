@@ -1,14 +1,22 @@
-#ifndef COLAPALTA_H
-#define COLAPALTA_H
+#ifndef COLA_H
+#define COLA_H
+#include <iostream>
+#include <Vehiculo.h>
+#include <unistd.h>
+using std::cout;
+#include "Nodo.h" // definición de la clase Nodo
 #include <Lista.h>
 
 template< typename tipo >
-class ColaPAlta /*: public Lista*/{
+class Cola /*: public Lista*/{
+    friend class CFrame;
 public:
-    ColaPAlta(); // constructor
-    ~ColaPAlta(); // destructor
+    Cola(); // constructor
+    ~Cola(); // destructor
     void insertarAlFinal( const tipo & );//Desencolar
+    void insertarNodoAlFinal(  tipo*  );//Desencolar
     bool eliminarDelFrente( tipo & );//Encolar
+    tipo eliminarDeCualquier( int &Pos );
     bool estaVacia() const;
     void imprimir() const;
 private:
@@ -20,12 +28,12 @@ private:
 
 // constructor predeterminado
 template< typename tipo >
-ColaPAlta< tipo >::ColaPAlta()
+Cola< tipo >::Cola()
     : PrimP( 0 ), UltP( 0 ){ }
 
 // destructor
 template< typename tipo >
-ColaPAlta< tipo >::~ColaPAlta(){
+Cola< tipo >::~Cola(){
     if ( !estaVacia() ) // la Lista no está vacía
     {
         cout << "Destruyendo nodos ...\n";
@@ -44,8 +52,22 @@ ColaPAlta< tipo >::~ColaPAlta(){
 
 // inserta un nodo al final de la lista
 template< typename tipo >
-void ColaPAlta< tipo >::insertarAlFinal( const tipo &valor ){
+void Cola< tipo >::insertarAlFinal( const tipo &valor ){
     Nodo< tipo > *nuevoPtr = obtenerNuevoNodo( valor ); // nuevo nodo
+    if ( estaVacia() ) // la Lista está vacía
+        PrimP = UltP = nuevoPtr; // la nueva lista sólo tiene un nodo
+    else{ // la Lista no está vacía
+        UltP->sigPtr = nuevoPtr; // actualiza el nodo que antes era el último
+        UltP = nuevoPtr; // nuevo último nodo
+    } // fin de else
+} // fin de la función insertarAlFinal
+
+
+
+// inserta un nodo al final de la lista
+template< typename tipo >
+void Cola< tipo >::insertarNodoAlFinal(  tipo* valor ){
+    Nodo< tipo > *nuevoPtr = valor; // nuevo nodo
     if ( estaVacia() ) // la Lista está vacía
         PrimP = UltP = nuevoPtr; // la nueva lista sólo tiene un nodo
     else{ // la Lista no está vacía
@@ -57,7 +79,7 @@ void ColaPAlta< tipo >::insertarAlFinal( const tipo &valor ){
 
 // elimina un nodo de la parte frontal de la lista
 template< typename tipo >
-bool ColaPAlta< tipo >::eliminarDelFrente( tipo &valor ){
+bool Cola< tipo >::eliminarDelFrente( tipo &valor ){
     if ( estaVacia() ) // la Lista está vacía
         return false; // la eliminación no tuvo éxito
     else{
@@ -75,14 +97,14 @@ bool ColaPAlta< tipo >::eliminarDelFrente( tipo &valor ){
 
 // ¿está la Lista vacía?
 template< typename tipo >
-bool ColaPAlta< tipo >::estaVacia() const{
+bool Cola< tipo >::estaVacia() const{
     return PrimP == 0;
 } // fin de la función estaVacia
 
 
 // muestra el contenido de la Lista
 template< typename tipo >
-void ColaPAlta< tipo >::imprimir() const{
+void Cola< tipo >::imprimir() const{
     if ( estaVacia() ) {// la Lista está vacía
         cout << "La lista esta vacia\n\n";
         return;
@@ -104,9 +126,45 @@ void ColaPAlta< tipo >::imprimir() const{
 
 // devuelve el apuntador al nodo recién asignado
 template< typename tipo >
-Nodo< tipo > *ColaPAlta< tipo >::obtenerNuevoNodo(const tipo &valor ){
+Nodo< tipo > *Cola< tipo >::obtenerNuevoNodo(const tipo &valor ){
     return new Nodo< tipo >( valor );
 } // fin de la función obtenerNuevoNodo
+
+
+template <typename tipo>
+tipo Cola <tipo>::eliminarDeCualquier( int &Pos ){
+
+    int Cant = 0;
+    Nodo <tipo> *actPtr = PrimP, *tempPtr, *tmpEnviar;
+
+    do{
+        Cant++;
+        actPtr = actPtr->sigPtr;
+    }while(actPtr != 0);
+
+    if( Pos<=Cant ){
+        cout<<"entró aqui";
+        actPtr = PrimP;
+        if ( Pos!=0 ){
+            for(int i=1; i<Pos-1; i++){
+                actPtr = actPtr->sigPtr;
+            }
+            tempPtr = actPtr->sigPtr;
+            actPtr->sigPtr = tempPtr->sigPtr;
+        }else{
+            tempPtr = actPtr;
+            PrimP = actPtr->sigPtr;
+        }
+//            valor = tempPtr->datos;
+        //delete tempPtr;
+        Vehiculo * tmp = tempPtr->datos;
+        delete tempPtr;
+        //return true;
+
+
+    return tmp;
+}
+}
 
 
 #endif // COLA_H

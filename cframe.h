@@ -3,10 +3,13 @@
 
 #include <QMainWindow>
 #include <Lista.h>
+#include <Cola.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class CFrame; }
 QT_END_NAMESPACE
+
 
 class CFrame : public QMainWindow
 {
@@ -16,7 +19,10 @@ public:
     CFrame(QWidget *parent = nullptr);
     ~CFrame();
     void Predefinido();
-    int Contar();
+    int ContarDisponibles();
+    int ContarPAlta();
+    int ContarPMedia();
+    int ContarPBaja();
     void MostrarDisponibles();
     void MostrarPAlta();
     void MostrarPMedia();
@@ -37,9 +43,14 @@ private slots:
 
     void on_spinBox_Vender_valueChanged(int arg1);
 
+    void on_pBtn_Mover_clicked();
+
+    void on_pBtn_Vender_clicked();
+
 private:
     Ui::CFrame *ui;
     Lista <Vehiculo*> L;
+    Cola <Vehiculo*> ColaPAlta ,ColaPMedia,ColaBaja ;
     Nodo <Vehiculo*> *ActP;
 
 

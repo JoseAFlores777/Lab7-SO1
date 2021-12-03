@@ -358,6 +358,8 @@ if (tmp->getAnio() < 2010 ) {
 
 MostrarDisponibles();
 
+ui->spinBox_Mover->setValue(0);
+
 }
 
 
@@ -381,6 +383,14 @@ void CFrame::on_pBtn_Vender_clicked()
         MostrarPBaja();
     }
 
+ui->spinBox_Vender->setValue(0);
+}
 
+
+void CFrame::on_pBtn_Agregar_2_clicked()
+{
+    Vehiculo* tmp = new Vehiculo();
+    tmp->Leer();
+    L.insertarAlFinal(tmp);
 }
 

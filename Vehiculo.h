@@ -1,12 +1,14 @@
 #ifndef VEHICULO_H
 #define VEHICULO_H
 
-/*#include <QMainWindow>*/
+#include <QMainWindow>
 #include <iostream>
 #include <cstring>
+#include <QInputDialog>
+#include <QMessageBox>
 using std::string;
 
-class Vehiculo /* : public QMainWindow*/
+class Vehiculo : public QMainWindow
 {
 private:
     char *Codigo = new char[7];
@@ -51,6 +53,8 @@ public:
     void setPrecio(float newPrecio);
 
     void Imprimir();
+
+    void Leer();
 };
 
 #endif // VEHICULO_H

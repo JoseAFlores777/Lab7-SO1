@@ -47,6 +47,8 @@ private slots:
 
     void on_pBtn_Vender_clicked();
 
+    void on_pBtn_Agregar_2_clicked();
+
 private:
     Ui::CFrame *ui;
     Lista <Vehiculo*> L;

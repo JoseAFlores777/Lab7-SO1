@@ -129,3 +129,17 @@ void Vehiculo::Imprimir()
              <<"\nPrecio: "<<getPrecio()
              <<"\n\n";
 }
+
+void Vehiculo::Leer()
+{
+    this->Codigo=strcpy(Codigo,QInputDialog::getText(this,".:.Ingreso.:.","Ingrese el Codigo de Vehiculo: ").toStdString().c_str());
+    this->Marca =QInputDialog::getText(this,".:.Marca.:.","Ingrese el Nombre de la Marca: ").toStdString();
+    this->Modelo =QInputDialog::getText(this,".:.Modelo.:.","Ingrese el Modelo : ").toStdString();
+    this->Color =QInputDialog::getText(this,".:.Color.:.","Ingrese el Color: ").toStdString();
+    this->Anio = QInputDialog::getText(this,".:.Anio.:.","Ingrese Anio: ").toShort();
+    this->Recorrido = QInputDialog::getText(this,".:.Recorrido.:.","Ingrese El Recorrido: ").toFloat();
+    this->Motor =QInputDialog::getText(this,".:.Motor.:.","Ingrese el Tipo de Motor : ").toStdString();
+    this->Traccion =QInputDialog::getText(this,".:.Traccion.:.","Ingrese La traccion : ").toStdString();
+    this->Precio = QInputDialog::getText(this,".:.Precio.:.","Ingrese El Precio: ").toFloat();
+
+}
